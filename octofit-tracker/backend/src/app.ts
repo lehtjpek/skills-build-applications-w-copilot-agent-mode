@@ -6,6 +6,22 @@ const app = express()
 
 app.use(express.json())
 
+app.get('/', (_request, response) => {
+  const apiBaseUrl = getApiBaseUrl()
+
+  response.json({
+    message: 'OctoFit Tracker API',
+    apiBaseUrl,
+    resources: {
+      users: `${apiBaseUrl}/api/users/`,
+      teams: `${apiBaseUrl}/api/teams/`,
+      activities: `${apiBaseUrl}/api/activities/`,
+      leaderboard: `${apiBaseUrl}/api/leaderboard/`,
+      workouts: `${apiBaseUrl}/api/workouts/`,
+    },
+  })
+})
+
 app.get('/api/health', (_request, response) => {
   response.json({ status: 'ok', apiBaseUrl: getApiBaseUrl() })
 })
