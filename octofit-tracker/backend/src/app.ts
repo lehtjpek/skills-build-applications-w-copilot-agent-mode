@@ -1,9 +1,21 @@
 import express from 'express'
+import cors from 'cors'
 import { getApiBaseUrl } from './config/apiUrl'
 import apiRouter from './routes'
 
 const app = express()
+const codespaceName = process.env.CODESPACE_NAME
+const allowedOrigins = new Set([
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  ...(codespaceName ? [`https://${codespaceName}-5173.app.github.dev`] : []),
+])
 
+app.use(cors({
+  origin(origin, callback) {
+    callback(null, !origin || allowedOrigins.has(origin))
+  },
+}))
 app.use(express.json())
 
 app.get('/', (_request, response) => {

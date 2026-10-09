@@ -2,7 +2,7 @@
 
 ## API configuration
 
-In GitHub Codespaces, define `VITE_CODESPACE_NAME` in `octofit-tracker/frontend/.env.local` with the Codespace name so the frontend can reach the API at `https://<codespace-name>-8000.app.github.dev`:
+In GitHub Codespaces, `VITE_CODESPACE_NAME` must resolve to the Codespace name so the frontend can reach the API at `https://<codespace-name>-8000.app.github.dev`. Vite automatically uses the Codespaces-provided `CODESPACE_NAME`; outside Codespaces, set the Vite variable in `octofit-tracker/frontend/.env.local`:
 
 ```dotenv
 VITE_CODESPACE_NAME=your-codespace-name
