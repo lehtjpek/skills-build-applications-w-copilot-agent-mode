@@ -30,7 +30,7 @@ app.get('/api/config', (_request, response) => {
   response.json({ apiBaseUrl: getApiBaseUrl() })
 })
 
-app.use('/api', apiRouter)
+app.use(apiRouter)
 
 app.use((error: unknown, _request: express.Request, response: express.Response, _next: express.NextFunction) => {
   console.error(error)
